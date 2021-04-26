@@ -95,7 +95,7 @@ static int _net_devnull=-1 ;
 static int _net_numconnections=0 ;
 
 #define NET INET
-#include "net.h"
+#include "../net.h"
 
 int _net_seterrno(INET *sh, char *context, enum net_errno_type type, int errcode) ;
 int _net_disconnect(INET *sh) ;

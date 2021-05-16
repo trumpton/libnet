@@ -398,6 +398,7 @@ INET *netconnect(char *hostname, int port, enum netflags flags)
 
 fail: 
   _net_disconnect(sh) ;
+  if (sh) free(sh) ;
   errno=EHOSTUNREACH ;
   return NULL ;
  

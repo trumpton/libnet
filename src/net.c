@@ -591,7 +591,7 @@ int _net_disconnect(INET *sh)
   if (!sh) return 0 ;
 
   if (sh->ssl) SSL_free(sh->ssl);
-  else if (sh->fd >=0 ) close(sh->fd);
+  if (sh->fd >=0 ) close(sh->fd);
   if (sh->ipaddress) free(sh->ipaddress) ;
   if (sh->ctx) SSL_CTX_free(sh->ctx);
 

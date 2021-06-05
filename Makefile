@@ -5,7 +5,7 @@
 LIBRARY := lnet.a
 LIBDBG := lnet-dbg.a
 
-SOURCES := src/net.c
+SOURCES := src/net.c src/httpc.c src/oauth2.c src/json.c
 
 #
 #

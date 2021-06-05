@@ -660,7 +660,7 @@ int netsend(INET *sh, char *buf, int len)
 // @param(in) sh Handle of open connection
 // @param(in) buf Buffer to store response
 // @param(in) maxlen Maximum number of bytes to read
-// @return Number of bytes received, or -1 on error
+// @return Number of bytes received, or -1 on error or end of file
 //
 
 
@@ -721,6 +721,7 @@ int netrecv(INET *sh, char *buf, int maxlen)
   } else if (sh->fd) {
 
     int r = recv(sh->fd, buf, maxlen, 0) ;
+    if (r<0 && !sh->isblocking && (errno==EAGAIN || errno==EWOULDBLOCK)) return 0 ;
     _net_commsdump(sh, (r<=0)?"<!":"< ", buf, r) ;
     _net_seterrno(sh, "netrecv", NET_ERR_ERRNO, 0) ;
     if (r==0) r=-1 ;

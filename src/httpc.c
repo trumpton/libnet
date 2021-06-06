@@ -375,7 +375,7 @@ int _httpc_getresponse(NET *session, char **response, int *responselen)
 
               x=strcasestr(line, "Content-Length:") ;
               if (x) {
-                bodylength = atoi(x) ;
+                bodylength = atoi(&x[15]) ;
               }
 
               x=strcasestr(line, "Transfer-Encoding: Chunked") ;
